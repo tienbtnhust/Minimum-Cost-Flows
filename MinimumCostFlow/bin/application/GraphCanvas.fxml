@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GraphCanvasController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="525.0" prefWidth="785.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.5697896749521989" layoutY="-1.0" orientation="VERTICAL" prefHeight="525.0" prefWidth="230.0">
+                    <items>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="63.0" layoutY="14.0" prefHeight="19.0" prefWidth="97.0" text="Algorithms" textAlignment="CENTER" textFill="#fc0909">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox layoutX="39.0" layoutY="64.0" mnemonicParsing="false" text="Circle Cancelling">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="playable" layoutX="93.0" layoutY="234.0" mnemonicParsing="false" onAction="#Playable" text="Play" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="132.0" prefWidth="222.0">
+                           <children>
+                              <Label layoutX="86.0" layoutY="14.0" text="Graph" textAlignment="CENTER" textFill="#0a0aee">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="NodeButton" layoutX="73.0" layoutY="45.0" mnemonicParsing="false" onAction="#CreateNode" prefHeight="25.0" prefWidth="77.0" text="New Node" />
+                              <Button fx:id="EdgeButton" layoutX="73.0" layoutY="86.0" mnemonicParsing="false" onAction="#CreateEdge" prefHeight="25.0" prefWidth="77.0" text="New Edge" />
+                              <Button fx:id="SaveButton" layoutX="73.0" layoutY="127.0" mnemonicParsing="false" onAction="#SaveGraph" text="Save Graph" />
+                              <Button fx:id="ResetButton" layoutX="73.0" layoutY="164.0" mnemonicParsing="false" onAction="#ResetGraph" prefHeight="25.0" prefWidth="77.0" text="RESET" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="GraphPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onMouseClicked="#handle" prefHeight="524.0" prefWidth="559.0" />
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
