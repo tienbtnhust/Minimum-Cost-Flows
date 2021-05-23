@@ -51,11 +51,13 @@ public class GraphCanvasController implements Initializable{
 		graph.edge = true;
 	}
 	// action click Save Graph
-	// tat tao do thi
+	// tat tao do thi __ Chon dinh dau,dinh cuoi,luong can thong qua
 	@FXML
 	public void SaveGraph(ActionEvent e) {
 		graph.node= false;
 		graph.edge = false;
+		graph.unselect();
+		graph.SelectStartDialog();
 	}
 	// click left mouse to create vertex
 	@FXML

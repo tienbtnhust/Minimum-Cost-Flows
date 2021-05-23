@@ -13,6 +13,7 @@ public class Edge {
     public Arrow arrow;
     public double cost;
     public double capacity;
+    public double flow;
     public Label EdgeLabel;
     public Shape getline() {
     	return line;
@@ -78,7 +79,10 @@ public class Edge {
 		InCost.setHeaderText("Enter the cost of the new Edge:");
 		InCost.setContentText(null);
 		Optional<String> result = InCost.showAndWait();
-		if (result.isPresent()) return Double.parseDouble(result.get());
+		if (result.isPresent()) {
+			if (result.get().isBlank()) return 0;
+			else return Double.parseDouble(result.get());
+		}
 		else return 0;
 	}
 	// Create dialog to input capacity of edge
@@ -88,7 +92,10 @@ public class Edge {
 		InCapacity.setHeaderText("Enter the capacity of the new Edge:");
 		InCapacity.setContentText(null);
 		Optional<String> result = InCapacity.showAndWait();
-		if (result.isPresent()) return Double.parseDouble(result.get());
+		if (result.isPresent()) {
+			if (result.get().isBlank()) return 0;
+			else return Double.parseDouble(result.get());
+		}
 		else return 0;
 	}
 	// Show cost and capacity on edge

@@ -1,8 +1,12 @@
 package Graph;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,7 +21,9 @@ public class Graph {
 	public StackPane selectNode;
 	public AnchorPane GraphPane;
 	public int nnode=0;
-	public boolean node=false,edge=false;
+	public boolean node=false,edge=false,selectstart=false,selectend=false;
+	public Node start,end;
+	public double flow;
 	Node getNodeFromShape(StackPane Dot) {
 		for (int i=0;i<Nodes.size();++i)
 			if (Nodes.get(i).circle.equals(Dot))
@@ -70,6 +76,23 @@ public class Graph {
 						   selectNode = null;
 					   }
 			   }
+			   if (!node && !edge && e.getButton() == MouseButton.PRIMARY) {
+				   selectNode = (StackPane) e.getSource();
+				   Circle NodeCircle = (Circle) selectNode.getChildren().get(0);
+				   if (selectstart) {
+					   NodeCircle.setFill(Color.ORCHID);
+					   start = getNodeFromShape(selectNode);
+					   SelectEndDialog();
+					   selectstart = false;
+				   } else
+				   if (selectend) {
+					   NodeCircle.setFill(Color.FORESTGREEN);
+					   end = getNodeFromShape(selectNode);
+					   EnterFlowDialog();
+					   selectend = false;
+				   }
+				   selectNode = null;
+			   }
 		}
 	};
 	public Graph(AnchorPane graphPane) {
@@ -99,5 +122,42 @@ public class Graph {
 	}
 	public void remove() {
 		//
+	}
+	public void view() {
+		GraphPane.getChildren().clear();
+		for (int i=0;i<Edges.size();++i) GraphPane.getChildren().addAll(Edges.get(i).arrow,Edges.get(i).line,Edges.get(i).EdgeLabel);
+		for (int i=0;i<Nodes.size();++i) GraphPane.getChildren().add(Nodes.get(i).circle);
+	}
+	public void unselect() {
+		if (selectNode == null) return;
+		Circle SelectCircle =(Circle) selectNode.getChildren().get(0);
+		SelectCircle.setFill(Color.CORAL);
+		selectNode= null;
+	}
+	public void SelectStartDialog() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Notification");
+		alert.setContentText("Please choose the beginning vertex");
+		alert.showAndWait();
+		selectstart = true;
+	}
+	public void SelectEndDialog() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Notification");
+		alert.setContentText("Please choose the ending vertex");
+		alert.showAndWait();
+		selectend=true;
+	}
+	public void EnterFlowDialog() {
+		TextInputDialog InFlow = new TextInputDialog();
+		InFlow.setTitle("Edge Information");
+		InFlow.setHeaderText("Enter the init flow:");
+		InFlow.setContentText(null);
+		Optional<String> result = InFlow.showAndWait();
+		if (result.isPresent()) {
+			if (result.get().isBlank()) flow =0;
+			else flow = Double.parseDouble(result.get());
+		}
+		else flow = 0;
 	}
 }
