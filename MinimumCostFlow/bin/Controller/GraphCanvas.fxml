@@ -13,24 +13,21 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <SplitPane dividerPositions="0.5697896749521989" layoutY="-1.0" orientation="VERTICAL" prefHeight="525.0" prefWidth="230.0">
+                  <SplitPane dividerPositions="0.4933078393881453" layoutY="-1.0" orientation="VERTICAL" prefHeight="525.0" prefWidth="230.0">
                     <items>
-                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="228.0">
                            <children>
                               <Label layoutX="63.0" layoutY="14.0" prefHeight="19.0" prefWidth="97.0" text="Algorithms" textAlignment="CENTER" textFill="#fc0909">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
                               </Label>
-                              <CheckBox layoutX="39.0" layoutY="64.0" mnemonicParsing="false" text="Circle Cancelling">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </CheckBox>
-                              <Button fx:id="playable" layoutX="93.0" layoutY="234.0" mnemonicParsing="false" onAction="#Playable" text="Play" />
+                              <Button fx:id="playable" layoutX="88.0" layoutY="143.0" mnemonicParsing="false" onAction="#Playable" prefHeight="25.0" prefWidth="45.0" text="Play" />
+                              <ChoiceBox fx:id="AlgorithmsBox" layoutX="24.0" layoutY="70.0" prefHeight="25.0" prefWidth="190.0" />
+                              <Button layoutX="88.0" layoutY="188.0" mnemonicParsing="false" text="Reset" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="132.0" prefWidth="222.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="228.0">
                            <children>
                               <Label layoutX="86.0" layoutY="14.0" text="Graph" textAlignment="CENTER" textFill="#0a0aee">
                                  <font>

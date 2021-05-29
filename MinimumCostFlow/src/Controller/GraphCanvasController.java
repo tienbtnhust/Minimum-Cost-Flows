@@ -3,17 +3,24 @@ package Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Algorithms.CycleCancelling;
+import Algorithms.MinimumMeanCycleCancelling;
 import Graph.Graph;
 import Graph.Node;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Separator;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 
 public class GraphCanvasController implements Initializable{
 
@@ -21,11 +28,15 @@ public class GraphCanvasController implements Initializable{
 	private Button playable,NodeButton,EdgeButton,SaveButton,ResetButton;
 	@FXML
 	private AnchorPane GraphPane;
+	@FXML
+	private ChoiceBox<Object> AlgorithmsBox;
 	public Graph graph = new Graph();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		ObservableList<Object> availableChoices = FXCollections.observableArrayList(new CycleCancelling(),new Separator(),new MinimumMeanCycleCancelling());
+		AlgorithmsBox.setItems(availableChoices);
+		graph.GraphPane = GraphPane;
 	}
 	// action click New Node
 	// sang che do tao dinh
@@ -33,7 +44,6 @@ public class GraphCanvasController implements Initializable{
 	public void CreateNode(ActionEvent e) {
 		graph.node=true;
 		graph.edge=false;
-		graph.GraphPane = GraphPane;
 	}
 	// action click New Edge
 	// sang che do tao canh

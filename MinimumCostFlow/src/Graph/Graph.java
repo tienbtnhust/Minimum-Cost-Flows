@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
-public class Graph {
+public class Graph{
 	public ArrayList<Node> Nodes = new ArrayList<Node>();
 	public ArrayList<Edge> Edges = new ArrayList<Edge>();
 	public StackPane selectNode;
@@ -160,4 +160,15 @@ public class Graph {
 		}
 		else flow = 0;
 	}
+	@SuppressWarnings("unchecked")
+	public Graph clone() {
+		Graph copy = new Graph();
+		copy.Nodes = (ArrayList<Node>) this.Nodes.clone();
+		copy.Edges = (ArrayList<Edge>) this.Edges.clone();
+		copy.start = this.start;
+		copy.end   = this.end;
+		copy.flow  = this.flow;
+		return copy;
+	}
+	
 }
