@@ -1,18 +1,14 @@
 package Algorithms;
 
-import Graph.Graph;
+import Network.Network;
 
-public class CycleCancelling extends Algorithm {
+public class CycleCancelling extends CycleAlgorithm {
 
 	public CycleCancelling() {
 		super();
 		this.name="Cycle Cancelling";
 	}
-
-	public void RunAlgorithm(Graph input) {
-		// TODO Auto-generated method stub
-	}
-	public CycleCancelling(Graph input) {
+	public CycleCancelling(Network input) {
 		super();
 		this.name="Cycle Cancelling";
 		//this.InGraph = input;

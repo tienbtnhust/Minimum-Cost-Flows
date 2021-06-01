@@ -1,14 +1,17 @@
 package Algorithms;
 
-import Graph.Graph;
+import Network.Network;
 
-public class MinimumMeanCycleCancelling extends Algorithm{
+public class MinimumMeanCycleCancelling extends CycleAlgorithm{
 
 	public MinimumMeanCycleCancelling() {
 		super();
 		this.name="Minimum Mean Cycle Cancelling";
 	}
-	public void RunAlgorithm(Graph input) {
+	public Network FindMinimumMeanCycle(Network input) {
+		return null;
+	}
+	public void RunAlgorithm(Network input) {
 		// TODO Auto-generated method stub
 	}
 	/*public MinimumMeanCycleCancelling(Graph input) {
