@@ -15,12 +15,17 @@ import javafx.util.Duration;
 public class CycleAlgorithm implements Algorithm{
 	String name;
 	ArrayList<Step> ListSteps = new ArrayList<Step>();
+	public boolean pausable = false;
+	Timeline timeline;
+	Network usage;
 	@Override
 	public String toString() {
 		return this.name;
 	}
 	@Override
 	public void RunAlgorithm(Network input) {
+		usage = input;
+		ListSteps.clear();
 		FindFeasibleFlow(input);
 		ListSteps.add(new Step(input.cloneforview(),false));
 		while (FindNegativeCycle(input)!=null) {
@@ -31,7 +36,7 @@ public class CycleAlgorithm implements Algorithm{
 			ListSteps.add(new Step(input.cloneforview(),true));
 		}
 		ListSteps.add(new Step(input.cloneforview(),false));
-		Timeline timeline = new Timeline();
+		timeline = new Timeline();
 		for (int i=0;i<ListSteps.size();++i) {
 			Duration duration = Duration.seconds(2*i);
 			Step node = ListSteps.get(i);
@@ -40,9 +45,20 @@ public class CycleAlgorithm implements Algorithm{
             });
             timeline.getKeyFrames().add(keyFrame);
 		}
-		timeline.play();
-		
 	}	
+	public void display() {
+		timeline.play();
+		pausable = false;
+	}
+	public void pause() {
+		timeline.pause();
+		pausable = true;
+	}
+	public void reset() {
+		timeline.stop();
+		usage.reset();
+		usage.view();
+	}
 	public void CreateResidualNetwork(Network input) {
 		input.viewResidual();
 		//for (int i=0;i<residual.Edges.size();++i) residual.Edges.get(i).create

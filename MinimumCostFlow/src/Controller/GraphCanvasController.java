@@ -26,12 +26,13 @@ import javafx.scene.layout.AnchorPane;
 public class GraphCanvasController implements Initializable{
 
 	@FXML
-	private Button playable,NodeButton,EdgeButton,SaveButton,ResetButton;
+	private Button playable,NodeButton,EdgeButton,SaveButton,ResetButton,PauseButton,resetAlButton;
 	@FXML
 	private AnchorPane GraphPane;
 	@FXML
 	private ChoiceBox<Object> AlgorithmsBox;
 	public Network graph = new Network();
+	public CycleAlgorithm al = new CycleAlgorithm();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -92,18 +93,30 @@ public class GraphCanvasController implements Initializable{
 	// action click Play
 	@FXML
 	public void Playable(ActionEvent e) {
-		if (!graph.save) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-		    alert.setTitle("Warning!");
-		    alert.setHeaderText(null);
-		    alert.setContentText("MUST SAVE THE GRAPH BEFORE PLAY ALGORITHMS!");
-		    alert.showAndWait();
-		    return;
+		if (al.pausable==false) {
+			if (!graph.save) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+			    alert.setTitle("Warning!");
+			    alert.setHeaderText(null);
+			    alert.setContentText("MUST SAVE THE GRAPH BEFORE PLAY ALGORITHMS!");
+			    alert.showAndWait();
+			    return;
+			}
+			al = (CycleAlgorithm) AlgorithmsBox.getValue();
+			al.RunAlgorithm(graph);
+			al.display();
 		}
-		CycleAlgorithm al = (CycleAlgorithm) AlgorithmsBox.getValue();
-		al.RunAlgorithm(graph);
+		else al.display();
 		//graph.viewResidual();
 		//al.UpdateFlow(graph,al.FindNegativeCycle(graph));
+	}
+	@FXML
+	public void PauseClick(ActionEvent e) {
+		al.pause();
+	}
+	@FXML
+	public void ResetBeforeRunAlgorithm(ActionEvent e) {
+		al.reset();
 	}
 	//reset graph
 	@FXML

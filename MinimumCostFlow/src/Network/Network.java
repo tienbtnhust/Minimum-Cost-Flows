@@ -209,5 +209,13 @@ public class Network{
 		copy.GraphPane = GraphPane;
 		return copy;
 	}
-	
+	public void reset() {
+		for (int i=0;i<Edges.size();++i) {
+			Edge e = Edges.get(i);
+			if (e.cost>0) {
+				e.flow =0;
+			}
+			else e.capacity = 0;
+		}
+	}
 }

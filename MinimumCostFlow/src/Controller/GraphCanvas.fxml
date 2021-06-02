@@ -7,44 +7,45 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GraphCanvasController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GraphCanvasController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="590.0" prefWidth="866.0">
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="639.0" prefWidth="945.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <SplitPane dividerPositions="0.4933078393881453" layoutY="-1.0" orientation="VERTICAL" prefHeight="590.0" prefWidth="254.0">
+                  <SplitPane dividerPositions="0.4933078393881453" layoutY="-1.0" orientation="VERTICAL" prefHeight="588.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="228.0">
                            <children>
-                              <Label layoutX="63.0" layoutY="14.0" prefHeight="19.0" prefWidth="97.0" text="Algorithms" textAlignment="CENTER" textFill="#fc0909">
+                              <Label layoutX="71.0" layoutY="14.0" prefHeight="19.0" prefWidth="97.0" text="Algorithms" textAlignment="CENTER" textFill="#fc0909">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="playable" layoutX="88.0" layoutY="143.0" mnemonicParsing="false" onAction="#Playable" prefHeight="25.0" prefWidth="45.0" text="Play" />
-                              <ChoiceBox fx:id="AlgorithmsBox" layoutX="24.0" layoutY="70.0" prefHeight="25.0" prefWidth="190.0" />
-                              <Button layoutX="88.0" layoutY="188.0" mnemonicParsing="false" text="Reset" />
+                              <Button fx:id="playable" layoutX="214.0" layoutY="70.0" mnemonicParsing="false" onAction="#Playable" prefHeight="25.0" prefWidth="50.0" text="Play" />
+                              <ChoiceBox fx:id="AlgorithmsBox" layoutX="17.0" layoutY="70.0" prefHeight="25.0" prefWidth="190.0" />
+                              <Button fx:id="resetAlButton" layoutX="113.0" layoutY="186.0" mnemonicParsing="false" onAction="#ResetBeforeRunAlgorithm" prefHeight="25.0" prefWidth="50.0" text="Reset" />
+                              <Button fx:id="PauseButton" layoutX="113.0" layoutY="143.0" mnemonicParsing="false" onAction="#PauseClick" prefHeight="25.0" prefWidth="50.0" text="Pause" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="291.0" prefWidth="232.0">
                            <children>
-                              <Label layoutX="86.0" layoutY="14.0" text="Graph" textAlignment="CENTER" textFill="#0a0aee">
+                              <Label layoutX="100.0" layoutY="14.0" text="Graph" textAlignment="CENTER" textFill="#0a0aee">
                                  <font>
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="NodeButton" layoutX="73.0" layoutY="45.0" mnemonicParsing="false" onAction="#CreateNode" prefHeight="25.0" prefWidth="77.0" text="New Node" />
-                              <Button fx:id="EdgeButton" layoutX="73.0" layoutY="86.0" mnemonicParsing="false" onAction="#CreateEdge" prefHeight="25.0" prefWidth="77.0" text="New Edge" />
-                              <Button fx:id="SaveButton" layoutX="73.0" layoutY="127.0" mnemonicParsing="false" onAction="#SaveGraph" text="Save Graph" />
-                              <Button fx:id="ResetButton" layoutX="73.0" layoutY="164.0" mnemonicParsing="false" onAction="#ResetGraph" prefHeight="25.0" prefWidth="77.0" text="RESET" />
+                              <Button fx:id="NodeButton" layoutX="100.0" layoutY="92.0" mnemonicParsing="false" onAction="#CreateNode" prefHeight="25.0" prefWidth="77.0" text="New Node" />
+                              <Button fx:id="EdgeButton" layoutX="100.0" layoutY="141.0" mnemonicParsing="false" onAction="#CreateEdge" prefHeight="25.0" prefWidth="77.0" text="New Edge" />
+                              <Button fx:id="SaveButton" layoutX="100.0" layoutY="186.0" mnemonicParsing="false" onAction="#SaveGraph" text="Save Graph" />
+                              <Button fx:id="ResetButton" layoutX="100.0" layoutY="234.0" mnemonicParsing="false" onAction="#ResetGraph" prefHeight="25.0" prefWidth="77.0" text="RESET" />
                            </children>
                         </AnchorPane>
                     </items>
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="GraphPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onMouseClicked="#handle" prefHeight="549.0" prefWidth="583.0" />
+          <AnchorPane fx:id="GraphPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" onMouseClicked="#handle" prefHeight="603.0" prefWidth="629.0" />
         </items>
       </SplitPane>
    </children>
