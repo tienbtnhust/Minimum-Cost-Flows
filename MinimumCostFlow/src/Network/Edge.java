@@ -89,29 +89,45 @@ public class Edge {
 	}
 	// Create dialog to input cost of edge
     double getCost() {
-		TextInputDialog InCost = new TextInputDialog();
-		InCost.setTitle("Edge Information");
-		InCost.setHeaderText("Enter the cost of the new Edge:");
-		InCost.setContentText(null);
-		Optional<String> result = InCost.showAndWait();
-		if (result.isPresent()) {
-			if (result.get().isBlank()) return 0;
-			else return Double.parseDouble(result.get());
+    	double res;
+		String input = "error";
+		while (true) {
+	     	try { 
+		        res =  Double.parseDouble(input);
+		        if (res<=0) input = InputError("Enter the cost of the new Edge:(positive float)");
+		        else break;
+		    } catch (NumberFormatException e) {
+		    	input = InputError("Enter the cost of the new Edge:(positive float)"); 
+		    } 
 		}
-		else return 0;
+		return res;
 	}
 	// Create dialog to input capacity of edge
 	int getCapacity() {
-		TextInputDialog InCapacity = new TextInputDialog();
-		InCapacity.setTitle("Edge Information");
-		InCapacity.setHeaderText("Enter the capacity of the new Edge:");
-		InCapacity.setContentText(null);
-		Optional<String> result = InCapacity.showAndWait();
-		if (result.isPresent()) {
-			if (result.get().isBlank()) return 0;
-			else return Integer.parseInt(result.get());
+		int res;
+		String input = "error";
+		while (true) {
+	     	try { 
+		        res =  Integer.parseInt(input);
+		        if (res<=0) input = InputError("Enter the capacity of the new Edge:(positive integer)");
+		        else break;
+		    } catch (NumberFormatException e) {
+		    	input = InputError("Enter the capacity of the new Edge:(positive integer)"); 
+		    } 
 		}
-		else return 0;
+		return res;
+	}
+	public String InputError(String error) {
+		TextInputDialog InError = new TextInputDialog();
+		InError.setTitle("Edge Information");
+		InError.setHeaderText(error);
+		InError.setContentText(null);
+		Optional<String> res = InError.showAndWait();
+		if (res.isPresent()) {
+			if (res.get().isBlank()) return "error";
+			else return res.get();
+		}
+		else return "error";
 	}
 	// Show cost and capacity on edge
 	Label EdgeLabel() {

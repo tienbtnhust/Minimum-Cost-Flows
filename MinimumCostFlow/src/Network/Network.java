@@ -174,16 +174,28 @@ public class Network{
 		selectend=true;
 	}
 	public void EnterFlowDialog() {
-		TextInputDialog InFlow = new TextInputDialog();
-		InFlow.setTitle("Edge Information");
-		InFlow.setHeaderText("Enter the init flow:");
-		InFlow.setContentText(null);
-		Optional<String> result = InFlow.showAndWait();
-		if (result.isPresent()) {
-			if (result.get().isBlank()) flow =0;
-			else flow = Integer.parseInt(result.get());
+		String input = "error";
+		while (true) {
+	     	try { 
+		        flow =  Integer.parseInt(input);
+		        if (flow<=0) input = InputError("Enter the init flow:(positive integer)");
+		        else break;
+		    } catch (NumberFormatException e) {
+		    	input = InputError("Enter the init flow:(positive integer)"); 
+		    } 
 		}
-		else flow = 0;
+	}
+	public String InputError(String error) {
+		TextInputDialog InError = new TextInputDialog();
+		InError.setTitle("Input Network Information");
+		InError.setHeaderText(error);
+		InError.setContentText(null);
+		Optional<String> res = InError.showAndWait();
+		if (res.isPresent()) {
+			if (res.get().isBlank()) return "error";
+			else return res.get();
+		}
+		else return "error";
 	}
 	public Network cloneforview() {
 		Network copy = new Network();
