@@ -28,6 +28,7 @@ public class CycleAlgorithm implements Algorithm{
 		ListSteps.clear();
 		FindFeasibleFlow(input);
 		ListSteps.add(new Step(input.cloneforview(),false));
+		ListSteps.add(new Step(input.cloneforview(),true));
 		while (FindNegativeCycle(input)!=null) {
 			Network cycle = FindNegativeCycle(input);
 			ListSteps.add(new Step(cycle.cloneforview(),true));

@@ -18,6 +18,7 @@ public class Node {
 	public boolean visited=false;
 	public int flow;
 	public double cost;
+	public int index;
 	//private StackPane selectNode;
 	public Node(String name) {
 		super();
