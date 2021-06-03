@@ -10,11 +10,13 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TextArea;
 import javafx.util.Duration;
 
 public class CycleAlgorithm implements Algorithm{
 	String name;
 	ArrayList<Step> ListSteps = new ArrayList<Step>();
+	String typeofcycle;
 	public boolean pausable = false;
 	Timeline timeline;
 	Network usage;
@@ -43,6 +45,31 @@ public class CycleAlgorithm implements Algorithm{
 			Step node = ListSteps.get(i);
 			KeyFrame keyFrame = new KeyFrame(duration,evt-> {
                 node.display();
+            });
+            timeline.getKeyFrames().add(keyFrame);
+		}
+	}	
+	public void RunAlgorithm(Network input,TextArea textarea) {
+		usage = input;
+		ListSteps.clear();
+		ListSteps.add(new Step(input.cloneforview(),"Run Algorithm ...\n",false));
+		FindFeasibleFlow(input);
+		ListSteps.add(new Step(input.cloneforview(),"Find Feasible Flow\n",false));
+		ListSteps.add(new Step(input.cloneforview(),"Residual Network\n",true));
+		while (FindNegativeCycle(input)!=null) {
+			Network cycle = FindNegativeCycle(input);
+			ListSteps.add(new Step(cycle.cloneforview(),"There exists negative cycle\nFind "+typeofcycle+" Cycle\n",true));
+			UpdateFlow(cycle);
+			ListSteps.add(new Step(input.cloneforview(),"Update flow through this cycle\n",false));
+			ListSteps.add(new Step(input.cloneforview(),"Residual Network\n",true));
+		}
+		ListSteps.add(new Step(input.cloneforview(),"There do not exist negative cycle\nPrint result\nThe min cost is "+input.getmincost()+"$ !",false));
+		timeline = new Timeline();
+		for (int i=0;i<ListSteps.size();++i) {
+			Duration duration = Duration.seconds(2*i);
+			Step node = ListSteps.get(i);
+			KeyFrame keyFrame = new KeyFrame(duration,evt-> {
+                node.display(textarea);
             });
             timeline.getKeyFrames().add(keyFrame);
 		}

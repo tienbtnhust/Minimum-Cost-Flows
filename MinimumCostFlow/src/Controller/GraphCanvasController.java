@@ -18,6 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -31,6 +32,8 @@ public class GraphCanvasController implements Initializable{
 	private AnchorPane GraphPane;
 	@FXML
 	private ChoiceBox<Object> AlgorithmsBox;
+	@FXML 
+	private TextArea textarea;
 	public Network graph = new Network();
 	public CycleAlgorithm al = new CycleAlgorithm();
 	@Override
@@ -40,6 +43,7 @@ public class GraphCanvasController implements Initializable{
 		AlgorithmsBox.setItems(availableChoices);
 		AlgorithmsBox.setValue(availableChoices.get(0));
 		graph.GraphPane = GraphPane;
+		textarea.setText("");
 	}
 	// action click New Node
 	// sang che do tao dinh
@@ -103,7 +107,7 @@ public class GraphCanvasController implements Initializable{
 			    return;
 			}
 			al = (CycleAlgorithm) AlgorithmsBox.getValue();
-			al.RunAlgorithm(graph);
+			al.RunAlgorithm(graph,textarea);
 			al.display();
 		}
 		else al.display();
@@ -117,6 +121,7 @@ public class GraphCanvasController implements Initializable{
 	@FXML
 	public void ResetBeforeRunAlgorithm(ActionEvent e) {
 		al.reset();
+		textarea.setText("");
 	}
 	//reset graph
 	@FXML

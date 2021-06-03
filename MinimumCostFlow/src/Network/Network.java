@@ -137,6 +137,7 @@ public class Network{
 		  if (Edges.get(i).cost >= 0) {
 			 Edge tmp = Edges.get(i);
 			 tmp.EdgeLabel = tmp.ChangeLabel();
+			 if (Edges.get(i).flow>0) tmp.EdgeLabel.setTextFill(Color.ROYALBLUE);
 			GraphPane.getChildren().addAll(Edges.get(i).arrow,Edges.get(i).EdgeLabel);
 		  }
 		for (int i=0;i<Nodes.size();++i) GraphPane.getChildren().add(Nodes.get(i).circle);
@@ -217,5 +218,13 @@ public class Network{
 			}
 			else e.capacity = 0;
 		}
+	}
+	public double getmincost() {
+		double mincost = 0;
+		for (int i=0;i<Edges.size();++i) {
+			Edge e = Edges.get(i);
+			if (e.cost>0) mincost += e.cost*e.flow;
+		}
+		return mincost;
 	}
 }

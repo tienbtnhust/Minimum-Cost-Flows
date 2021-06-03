@@ -9,6 +9,7 @@ public class MinimumMeanCycleCancelling extends CycleAlgorithm{
 	public MinimumMeanCycleCancelling() {
 		super();
 		this.name="Minimum Mean Cycle Cancelling";
+		this.typeofcycle="Minimum Mean";
 	}
 	public Network FindNegativeCycle(Network input) {
 		for (int i=0;i<input.Nodes.size();++i) input.Nodes.get(i).index = i;
