@@ -18,6 +18,7 @@ public class CycleAlgorithm implements Algorithm{
 	ArrayList<Step> ListSteps = new ArrayList<Step>();
 	String typeofcycle;
 	public boolean pausable = false;
+	public boolean isFlow = false;
 	Timeline timeline;
 	Network usage;
 	@Override
@@ -54,6 +55,11 @@ public class CycleAlgorithm implements Algorithm{
 		ListSteps.clear();
 		ListSteps.add(new Step(input.cloneforview(),"Run Algorithm ...\n",false));
 		FindFeasibleFlow(input);
+		if (!isFlow) {
+			input.reset();
+			textarea.appendText("Run Algorithm ...\nThere do not exists the feasible flow\n");
+			return;
+		}
 		ListSteps.add(new Step(input.cloneforview(),"Find Feasible Flow\n",false));
 		ListSteps.add(new Step(input.cloneforview(),"Residual Network\n",true));
 		while (FindNegativeCycle(input)!=null) {
@@ -75,15 +81,18 @@ public class CycleAlgorithm implements Algorithm{
 		}
 	}	
 	public void display() {
+		if (!isFlow) return;
 		timeline.play();
 		pausable = false;
 	}
 	public void pause() {
+		if (!isFlow) return;
 		timeline.pause();
 		pausable = true;
 	}
 	public void reset() {
-		timeline.stop();
+		if (!isFlow) return;
+        timeline.stop();
 		usage.reset();
 		usage.view();
 	}
@@ -133,8 +142,9 @@ public class CycleAlgorithm implements Algorithm{
 	        alert.setHeaderText("Results:");
 	        alert.setContentText("Can not pass throw the init flow!");
 	        alert.showAndWait();
-		} else input.viewResidual();
-		//output.view();
+	        isFlow = false;
+		} else isFlow = true;
+		return;
 	}
 	public Network FindNegativeCycle(Network input) {
 		Network cycle =new Network();
